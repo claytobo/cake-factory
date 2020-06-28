@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Cake Factory Design Page</title>
+    <link rel="stylesheet" th:href="@{/css/shop-homepage.css}" />
+  </head>
+
+  <body>
+    <h1>Design your Cake!</h1>
+    <div th:each="ingredient : ${CAKE}">
+    	<label th:text="${ingredient.name}"></label>
+    </div>
+  </body>
+</html>

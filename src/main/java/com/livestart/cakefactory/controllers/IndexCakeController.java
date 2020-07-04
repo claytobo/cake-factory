@@ -17,6 +17,7 @@ public class IndexCakeController {
 	@GetMapping
 	public String showDesignForm(Model model) {
 		model.addAttribute("PASTRIES", service.getAllPastries());
+		model.addAttribute("CATALOG", service.getAllItems());
 		return "index";
 	}
 

@@ -1,17 +1,23 @@
-package com.livestart.cakefactory.assist;
+package com.livestart.cakefactory.repositories.pojos;
 
-public class Pastry {
+import com.livestart.cakefactory.repositories.entities.Pastry;
+
+public class PastryPojo {
 	private String name;
 	private double price;
 	
-	public Pastry() {
+	public PastryPojo() {
 		super();
 	}
 
-	public Pastry(String name, double d) {
+	public PastryPojo(String name, double d) {
 		super();
 		this.name = name;
 		this.price = d;
+	}
+	
+	public PastryPojo(Pastry pastry) {
+		this(pastry.getName(), pastry.getPrice());
 	}
 
 	public String getName() {

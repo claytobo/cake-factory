@@ -8,23 +8,21 @@ spring:
     username: "clayton"
     driver-class-name: "org.postgresql.Driver"
   jpa:
-#    generate-ddl: "false"
     open-in-view: true
     hibernate:
-      ddl-auto: "validate"
-#    properties:
-#      hibernate:
-#        globally_quoted_identifiers: "true"
+      ddl-auto: validate
+#    ddl-auto: none
   flyway:
-    url: "jdbc:postgresql://localhost:5431/cakefactory"
+#    url: "jdbc:postgresql://localhost:5431/cakefactory"
     schemas: cakefactory
     user: clayton
     password: password
     enabled: true
     createSchemas: true
-#  jackson:
-#    serialization:
-#      fail-on-empty-bean: "false"
+
+hibernate:
+  hbm2ddl:
+    auto: validate
 
 server:
   port: "8080"

@@ -8,7 +8,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import com.livestart.cakefactory.repositories.PastryRepository;
-import com.livestart.cakefactory.repositories.entities.PastryEntity;
+import com.livestart.cakefactory.repositories.entities.Pastry;
 
 @DataJpaTest
 public class CakeFactoryJpaTests {
@@ -20,7 +20,7 @@ public class CakeFactoryJpaTests {
 	
 	@Test
 	public void insertRecord() {
-		PastryEntity pe = new PastryEntity();
+		Pastry pe = new Pastry();
 		pe.setName("Banana Cream Pie");
 		pe.setPrice(15.00);
 		entityManager.persist(pe);

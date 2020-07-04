@@ -62,7 +62,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="pastry : ${PASTRIES}">
+						<tr th:each="pastry : ${CATALOG}">
 							<td><a href="#" class="list-group-item" th:text="${pastry.name}"></a></td>
 							<td class="list-group-item" th:text="${pastry.price}"></td>
 						</tr>

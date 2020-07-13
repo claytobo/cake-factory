@@ -1,16 +1,18 @@
 package com.livestart.cakefactory.repositories.pojos;
 
+import java.math.BigDecimal;
+
 import com.livestart.cakefactory.repositories.entities.Pastry;
 
 public class PastryPojo {
 	private String name;
-	private double price;
+	private BigDecimal price;
 	
 	public PastryPojo() {
 		super();
 	}
 
-	public PastryPojo(String name, double d) {
+	public PastryPojo(String name, BigDecimal d) {
 		super();
 		this.name = name;
 		this.price = d;
@@ -28,11 +30,11 @@ public class PastryPojo {
 		this.name = name;
 	}
 
-	public double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 	

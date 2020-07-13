@@ -1,22 +1,26 @@
 package com.livestart.cakefactory.repositories.entities;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity(name = "pastry")
+@Table(name = "pastry", schema = "cakefactory")
 public class Pastry {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Integer id;
 	private String name;
-	private double price;
+	private BigDecimal price;
 	
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -25,10 +29,10 @@ public class Pastry {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
-	public void setPrice(double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 }

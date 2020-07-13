@@ -2,6 +2,8 @@ package com.livestart.cakefactory;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.math.BigDecimal;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -22,7 +24,7 @@ public class CakeFactoryJpaTests {
 	public void insertRecord() {
 		Pastry pe = new Pastry();
 		pe.setName("Banana Cream Pie");
-		pe.setPrice(15.00);
+		pe.setPrice(new BigDecimal("15.00"));
 		entityManager.persist(pe);
 
 		long count = repository.count();

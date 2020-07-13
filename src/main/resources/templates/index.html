@@ -64,14 +64,10 @@
 					<tbody>
 						<tr th:each="pastry : ${CATALOG}">
 							<td><a href="#" class="list-group-item" th:text="${pastry.name}"></a></td>
-							<td class="list-group-item" th:text="${pastry.price}"></td>
+							<td class="list-group-item" th:text="${#numbers.formatCurrency(pastry.price)}"></td>
 						</tr>
 					</tbody>
 				</table>
-				<!-- 
-				<div class="list-group" th:each="pastry : ${PASTRIES}">
-				</div>
-                 -->
                  
 			</div>
 			<!-- /.col-lg-3 -->

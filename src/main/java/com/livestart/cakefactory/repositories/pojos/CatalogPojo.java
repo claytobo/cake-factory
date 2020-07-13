@@ -1,5 +1,7 @@
 package com.livestart.cakefactory.repositories.pojos;
 
+import java.math.BigDecimal;
+
 import com.livestart.cakefactory.repositories.entities.Catalog;
 
 public class CatalogPojo {
@@ -18,6 +20,13 @@ public class CatalogPojo {
 		this.price = price;
 	}
 	
+	public CatalogPojo(String code, String name, BigDecimal price) {
+		super();
+		this.code = code;
+		this.name = name;
+		this.price = price.doubleValue();
+	}
+
 	public CatalogPojo(Catalog catalog) {
 		this(catalog.getId(), catalog.getName(), catalog.getPrice().doubleValue());
 	}

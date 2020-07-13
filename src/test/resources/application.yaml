@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: "cake-factory"
+  datasource:
+    url: "jdbc:postgresql://localhost:5431/cakefactory"
+    platform: "postgresql"
+    password: "password"
+    username: "clayton"
+    driver-class-name: "org.postgresql.Driver"
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: validate
+#    ddl-auto: none
+  flyway:
+#    url: "jdbc:postgresql://localhost:5431/cakefactory"
+    schemas: cakefactory
+    user: clayton
+    password: password
+    enabled: true
+    createSchemas: true
+
+hibernate:
+  hbm2ddl:
+    auto: validate
+
+server:
+  port: "8080"
+  servlet:
+    context-path: "/"
+
+logging:
+  level:
+    org.springframework.web: INFO
+    org.hibernate: INFO
+  file: logs/cake-factory.log

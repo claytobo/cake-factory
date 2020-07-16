@@ -10,6 +10,7 @@ public class Basket extends ArrayList<CatalogPojo> {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	public Basket() {
+		super();
 		logger.info("new Basket created");
 	}
 }

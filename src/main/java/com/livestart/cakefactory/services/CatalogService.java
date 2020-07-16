@@ -28,10 +28,8 @@ public class CatalogService implements IPastryCatalog, ICatalog {
 	
 	@Override
 	public List<PastryPojo> getAllPastries() {
-		logger.info("inside getAllPastries()");
 		List<PastryPojo> pastries = new ArrayList<>();
 		repository.findAll().forEach(e -> {
-			logger.info("pastry: {} = {}", e.getName(), e.getPrice());
 			PastryPojo pastry = new PastryPojo(e);
 			pastries.add(pastry);
 		});

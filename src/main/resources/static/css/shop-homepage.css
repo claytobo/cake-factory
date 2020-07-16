@@ -17,3 +17,87 @@ body {
 	flex: 0 0 65%;
 	max-width: 65%;
 }
+
+.basket {
+	padding-left: 50px;
+	padding-top: 8px;
+	color: yellow;
+}
+
+.table-spacing {
+	border-spacing: 8px;
+	border-collapse: separate;
+}
+
+.list-group-item {
+	border: 3px solid blue;
+}
+
+.table-cell-item {
+	border: 3px solid blue;
+	background-color: white;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+td.list-add-button {
+	width: 40px;
+	height: 50px;
+	background-color: lightgreen;
+	border: 3px solid darkgreen;
+	text-align: center;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+td.list-add-button:hover {
+	width: 40px;
+	height: 50px;
+	background-color: lightgreen;
+	border: 3px solid yellow;
+	text-align: center;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+td.list-add-button > a {
+	color: darkgreen;
+	font-weight: bold;
+}
+
+td.list-add-button > a:hover {
+	color: yellow;
+	font-weight: bold;
+}
+
+td.list-remove-button {
+	width: 80px;
+	height: 50px;
+	background-color: red;
+	border: 3px solid darkred;
+	text-align: center;
+}
+
+td.list-remove-button:hover {
+	width: 80px;
+	height: 50px;
+	background-color: red;
+	border: 3px solid orange;
+	text-align: center;
+}
+
+td.list-remove-button > a {
+	color: black;
+	font-weight: bold;
+}
+
+td.list-remove-button > a:hover {
+	color: orange;
+	font-weight: bold;
+}

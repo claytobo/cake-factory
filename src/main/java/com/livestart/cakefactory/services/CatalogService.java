@@ -1,6 +1,7 @@
 package com.livestart.cakefactory.services;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -42,10 +43,11 @@ public class CatalogService implements IPastryCatalog, ICatalog {
 		logger.info("inside getAllItems()");
 		List<CatalogPojo> items = new ArrayList<>();
 		categoryRepository.findAll().forEach(action -> {
-			logger.info("catalog item: {}/t{}/t{}", action.getId(), action.getName(), action.getPrice());
+			logger.info("catalog item: {} {} {}", action.getId(), action.getName(), action.getPrice());
 			CatalogPojo item = new CatalogPojo(action);
 			items.add(item);
 		});
+		Collections.sort(items);
 		return items;
 	}
 

@@ -43,6 +43,9 @@
 					</li>
 				</ul>
 			</div>
+			<div class="basket">
+				<a th:href="@{'/basket'}" th:text="'Basket: ' + ( (${BASKET_COUNT} == null) ? '0 items' : ${BASKET_COUNT} + ' item(s)' )"></a>
+			</div>
 		</div>
 	</nav>
 
@@ -54,16 +57,18 @@
 			<div class="col-lg-3">
 
 				<h1 class="my-4">Pick a Pastry!</h1>
-				<table>
+				<table class="table-spacing">
 					<thead>
 						<tr>
+							<th></th>
 							<th>Name</th>
 							<th>Price</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="pastry : ${CATALOG}">
-							<td><a href="#" class="list-group-item" th:text="${pastry.name}"></a></td>
+							<td class="list-add-button"><a th:href="@{'/basket/add/' + ${pastry.code}}">ADD</a></td>
+							<td class="table-cell-item" th:text="${pastry.name}"></td>
 							<td class="list-group-item" th:text="${#numbers.formatCurrency(pastry.price)}"></td>
 						</tr>
 					</tbody>
@@ -167,65 +172,6 @@
 						</div>
 					</div>
 
-					<!-- 
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<a href="#"><img class="card-img-top"
-								src="http://placehold.it/700x400" alt=""></a>
-							<div class="card-body">
-								<h4 class="card-title">
-									<a href="#">Item Four</a>
-								</h4>
-								<h5>$24.99</h5>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Amet numquam aspernatur!</p>
-							</div>
-							<div class="card-footer">
-								<small class="text-muted">&#9733; &#9733; &#9733;
-									&#9733; &#9734;</small>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<a href="#"><img class="card-img-top"
-								src="http://placehold.it/700x400" alt=""></a>
-							<div class="card-body">
-								<h4 class="card-title">
-									<a href="#">Item Five</a>
-								</h4>
-								<h5>$24.99</h5>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor
-									sit amet.</p>
-							</div>
-							<div class="card-footer">
-								<small class="text-muted">&#9733; &#9733; &#9733;
-									&#9733; &#9734;</small>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<a href="#"><img class="card-img-top"
-								src="http://placehold.it/700x400" alt=""></a>
-							<div class="card-body">
-								<h4 class="card-title">
-									<a href="#">Item Six</a>
-								</h4>
-								<h5>$24.99</h5>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Amet numquam aspernatur!</p>
-							</div>
-							<div class="card-footer">
-								<small class="text-muted">&#9733; &#9733; &#9733;
-									&#9733; &#9734;</small>
-							</div>
-						</div>
-					</div>
-					-->
 				</div>
 				<!-- /.row -->
 

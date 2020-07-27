@@ -67,7 +67,7 @@
 					</thead>
 					<tbody>
 						<tr th:each="pastry : ${CATALOG}">
-							<td class="list-add-button"><a th:href="@{'/basket/add/' + ${pastry.code}}">ADD</a></td>
+							<td class="list-add-button"><a th:href="@{'/basket/item/add/' + ${pastry.code}}">ADD</a></td>
 							<td class="table-cell-item" th:text="${pastry.name}"></td>
 							<td class="list-group-item" th:text="${#numbers.formatCurrency(pastry.price)}"></td>
 						</tr>

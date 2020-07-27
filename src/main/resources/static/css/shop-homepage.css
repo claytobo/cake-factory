@@ -101,3 +101,16 @@ td.list-remove-button > a:hover {
 	color: orange;
 	font-weight: bold;
 }
+
+div.two-column {
+	width: 48%;
+	float: left;
+}
+
+h1.attention {
+	border: 2px solid red;
+	width: 100%;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}

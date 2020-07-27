@@ -95,4 +95,9 @@ public class CatalogPojo implements Comparable<CatalogPojo> {
 	public int compareTo(CatalogPojo o) {
 		return this.name.compareTo(o.getName());
 	}
+
+	@Override
+	public String toString() {
+		return String.format("CatalogPojo [code=%s, name=%s, price=%s]", code, name, price);
+	}
 }

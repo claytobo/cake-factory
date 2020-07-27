@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.livestart.cakefactory.repositories.pojos.Basket;
+import com.livestart.cakefactory.repositories.pojos.Order;
 
 @Configuration
 public class ApplicationBeans {
@@ -17,4 +18,9 @@ public class ApplicationBeans {
 		return new Basket();
 	}
 
+	@Bean
+	@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+	public Order createOrder() {
+		return new Order();
+	}
 }

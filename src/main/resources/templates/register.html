@@ -1,3 +1,20 @@
+<!-- 
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Form</h1>
+    <form action="#" th:action="@{/register}" th:object="${signup}" method="post">
+    	<p>Email: <input type="text" th:field="*{email}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>
+ -->
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org" lang="en">
@@ -7,7 +24,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Cake Factory Basket for Customer">
 <meta name="author" content="Clayton Bodine">
-<title>Cake Factory Basket Page</title>
+<title>Cake Factory Signup Page</title>
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="css/shop-homepage.css" rel="stylesheet">
 </head>
@@ -44,35 +61,25 @@
 	</nav>
 	<div class="container">
 		<div class="row">
-			<h1 class="attention">Here are the contents of your basket. Tell us where to deliver!</h1>
+			<h1 class="attention">Signup with the Cake Factory here!</h1>
 		</div>
 		<div class="row">
-			<div class="two-column">
-				<table class="table-spacing">
-					<thead>
+			<form method="POST" action="#" th:action="@{/register}" th:object="${register}">
+				<div class="two-column">
+					<h2>Login Information</h2>
+					<table>
 						<tr>
-							<th></th>
-							<th>Name</th>
-							<th>Price</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="item : ${BASKET_ITEMS}">
-							<td class="list-remove-button"><a
-								th:href="@{'/basket/subtract/' + ${item.code}}">REMOVE</a></td>
-							<td th:text="${item.name}"></td>
-							<td th:text="${#numbers.formatCurrency(item.price)}"></td>
+							<th><label for="email">Email: </label></th>
+							<td><input type="text" th:field="*{email}" /></td>
 						</tr>
 						<tr>
-							<th colspan="2">TOTAL:</th>
-							<th th:text="${#numbers.formatCurrency(BASKET_PRICE)}"></th>
+							<th><label for="password">Password: </label></th>
+							<td><input type="password" th:field="*{password}" /></td>
 						</tr>
-					</tbody>
-				</table>
-			</div>
-	
-			<div class="two-column">
-				<form method="POST" th:action="@{/order}" th:object="${order}">
+					</table>
+				</div>
+				<div class="two-column">
+					<h2>Delivery Information</h2>
 					<table>
 						<tr>
 							<th><label for="firstName">First Name: </label></th>
@@ -151,10 +158,11 @@
 							<td><input type="text" th:field="*{zip}" /></td>
 						</tr>
 					</table>
-					<br /> <input type="submit" value="Submit order" />
-				</form>
-			</div>
-
+				</div>
+				<div class="row">
+					<input class="register" type="submit" value="Register" />
+				</div>
+			</form>
 		</div>
 	</div>
 	<footer class="py-5 bg-dark footer">

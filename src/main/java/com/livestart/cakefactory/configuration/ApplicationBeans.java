@@ -8,6 +8,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.livestart.cakefactory.repositories.pojos.Basket;
 import com.livestart.cakefactory.repositories.pojos.Order;
+import com.livestart.cakefactory.repositories.pojos.Register;
 
 @Configuration
 public class ApplicationBeans {
@@ -23,4 +24,10 @@ public class ApplicationBeans {
 	public Order createOrder() {
 		return new Order();
 	}
+
+//	@Bean
+//	@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+//	public Register createRegisterObject() {
+//		return new Register();
+//	}
 }

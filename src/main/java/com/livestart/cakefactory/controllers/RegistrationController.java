@@ -33,6 +33,6 @@ public class RegistrationController {
 		logger.info("RegistrationController received a post");
 		logger.info(register.toString());
 		signupService.register(register);
-		return "index";
+		return "redirect:/";
 	}
 }

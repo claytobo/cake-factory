@@ -2,22 +2,36 @@ package com.livestart.cakefactory.services;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.livestart.cakefactory.repositories.entities.Addresses;
 import com.livestart.cakefactory.repositories.entities.Authorities;
 import com.livestart.cakefactory.repositories.entities.Users;
 import com.livestart.cakefactory.repositories.pojos.Register;
+import com.livestart.cakefactory.repositories.pojos.User;
 
 @Service
-public class SignupService {
+public class SignupService implements UserDetailsService {
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+	
 	@Autowired
 	private AccountService accountService;
 	
 	@Autowired
 	private AddressService addressService;
+	
+	public SignupService() {
+//		this.encoder = new BCryptPasswordEncoder(16);;
+	}
 	
 	public Boolean register(Register register) {
 		// create variable to catch exceptions...
@@ -25,7 +39,7 @@ public class SignupService {
 		// split the register object into DTO entities...
 		Users users = new Users();
 		users.setEnabled(true);
-		users.setPassword(register.getPassword());
+		users.setPassword(encoder.encode(register.getPassword()));
 		users.setUsername(register.getEmail());
 		
 		Authorities auths = new Authorities();
@@ -96,5 +110,15 @@ public class SignupService {
 	
 	public long count() {
 		return accountService.countUsers();
+	}
+
+	@Transactional
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		Users users = accountService.getOneUsers(username);
+		if (users == null) {
+			throw new UsernameNotFoundException(String.format("username %s does not exist", username));
+		}
+		return new User(users);
 	}
 }

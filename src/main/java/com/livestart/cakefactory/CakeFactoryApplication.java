@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConf
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@EnableAutoConfiguration(exclude = ErrorMvcAutoConfiguration.class)
+@EnableAutoConfiguration(exclude = {ErrorMvcAutoConfiguration.class})
 @ComponentScan(basePackages={"com.livestart"})
 public class CakeFactoryApplication {
 

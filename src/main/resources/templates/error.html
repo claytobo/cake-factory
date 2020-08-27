@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>The Cake Factory Error Page</title>
+
+<!-- Bootstrap core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/shop-homepage.css" rel="stylesheet">
+
+<style>
+table {
+	background-image: url("/images/cake-900x350-01.png");
+	width: 50%;
+	margin: 0 auto;
+	color: black;
+	margin-bottom: 30px;
+}
+
+table th {
+	border: solid 1px red;
+	padding: 10px;
+	font-weight: bold;
+	font-size: 16pt;
+}
+
+table td {
+	vertical-align: top;
+	border: solid 1px red;
+	padding: 10px;
+	font-weight: bold;
+	font-size: 16pt;
+}
+
+h1 {
+	text-align: center;
+	margin: 0 auto;
+}
+</style>
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="#">The Cake Factory</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="#">Home
+							<span class="sr-only">(current)</span>
+						</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/account">Account Update</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{'/register'}" th:text="'Signup'">Signup</a>
+					</li>
+					<li class="nav-item">
+						<form method="POST" th:action="@{/logout}">
+							<input type="submit" value="Logout"/>
+						</form>
+					</li>
+				</ul>
+			</div>
+			<div class="basket">
+				<a th:href="@{'/basket'}" th:text="'Basket: ' + ( (${BASKET_COUNT} == null) ? '0 items' : ${BASKET_COUNT} + ' item(s)' )"></a>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Page Content -->
+	<div class="container">
+		<h1>The Application Received an Error</h1>
+	    <table>
+	    	<tr>
+	    		<th>Date</th>
+	    		<td th:text="${timestamp}"/>
+	    	</tr>
+	    	<tr>
+	    		<th>Path</th>
+	    		<td th:text="${path}"/>
+	    	</tr>
+	    	<tr>
+	    		<th>Error</th>
+	    		<td th:text="${error}"/>
+	    	</tr>
+	    	<tr>
+	    		<th>Status</th>
+	    		<td th:text="${status}"/>
+	    	</tr>
+	    	<tr>
+	    		<th>Message</th>
+	    		<td th:text="${message}"/>
+	    	</tr>
+	    	<tr>
+	    		<th>Exception</th>
+	    		<td th:text="${exception}"/>
+	    	</tr>
+	    	<tr>
+	    		<th>Trace</th>
+	    		<td>
+	    			<pre th:text="${trace}"/>
+	    		</td>
+	    	</tr>
+	    </table>
+	</div>
+
+	<!-- Footer -->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy; The Cake Factory LTD 2020</p>
+		</div>
+		<!-- /.container -->
+	</footer>
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>The Cake Factory Login Page</title>
+
+<!-- Bootstrap core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/shop-homepage.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="#">The Cake Factory</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="#">Home
+							<span class="sr-only">(current)</span>
+						</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/account">Account Update</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{'/register'}" th:text="'Signup'">Signup</a>
+					</li>
+					<li class="nav-item">
+						<form method="POST" th:action="@{/logout}">
+							<input type="submit" value="Logout"/>
+						</form>
+					</li>
+				</ul>
+			</div>
+			<div class="basket">
+				<a th:href="@{'/basket/checkout'}" th:text="'Basket: ' + ( (${BASKET_COUNT} == null) ? '0 items' : ${BASKET_COUNT} + ' item(s)' )"></a>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Page Content -->
+	<div class="container">
+	<h1>Login</h1>
+    <img th:src="@{/images/cake-900x350-01.png}"/>
+
+    <div th:if="${error}">
+      Unable to login. Check your username and password.
+    </div>
+
+    <p>New here? Click
+       <a th:href="@{/register}">here</a> to register.</p>
+
+    <!-- tag::thAction[] -->
+    <form method="POST" th:action="@{/login}" id="loginForm">
+    <!-- end::thAction[] -->
+	  <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+      <label for="username">Username: </label>
+      <input type="text" name="username" id="username" /><br/>
+
+      <label for="password">Password: </label>
+      <input type="password" name="password" id="password" /><br/>
+
+      <input type="submit" value="Login"/>
+    </form>
+	</div>
+	<!-- /.container -->
+
+	<!-- Footer -->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy; The Cake Factory LTD 2020</p>
+		</div>
+		<!-- /.container -->
+	</footer>
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

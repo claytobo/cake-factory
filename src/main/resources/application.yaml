@@ -31,7 +31,7 @@ server:
 
 logging:
   level:
-    org.springframework.web: DEBUG
-    org.springframework.security: DEBUG
+    org.springframework.web: INFO
+    org.springframework.security: INFO
     org.hibernate: INFO
   file: logs/cake-factory.log

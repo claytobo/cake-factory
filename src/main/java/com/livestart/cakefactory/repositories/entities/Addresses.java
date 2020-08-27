@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.livestart.cakefactory.repositories.pojos.Address;
+
 @Entity(name = "addresses")
 @Table(name = "addresses", schema = "cakefactory")
 public class Addresses {
@@ -27,6 +29,28 @@ public class Addresses {
 	public Addresses() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public Addresses(String email, String firstname, String lastname, String street, String city, String state,
+			String zip) {
+		this();
+		this.email = email;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+	}
+	
+	public Addresses(Address address) {
+		this(address.getEmail(), 
+			 address.getFirstName(), 
+			 address.getLastName(), 
+			 address.getStreet(), 
+			 address.getCity(), 
+			 address.getState(), 
+			 address.getZip());
 	}
 
 	public String getEmail() {

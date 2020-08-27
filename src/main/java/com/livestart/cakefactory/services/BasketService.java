@@ -5,15 +5,20 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.livestart.cakefactory.repositories.pojos.Basket;
 import com.livestart.cakefactory.repositories.pojos.CatalogPojo;
+import com.livestart.cakefactory.repositories.pojos.ItemCounter;
 
 @Service("BasketService")
 public class BasketService {
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private Basket basket;
 	
@@ -73,6 +78,29 @@ public class BasketService {
 		return basketTotal;
 	}
 	
+	public Map<String, ItemCounter> mapItems() {
+		Map<String, ItemCounter> items = new HashMap<>();;
+		List<CatalogPojo> basketItems = getBasketItems();
+		basketItems.forEach(bi -> {
+			// is the basket item in the map collection?
+			ItemCounter itemCounter = items.get(bi.getName());
+			if (itemCounter == null) {
+				itemCounter = new ItemCounter(bi.getName(), bi.getCode(), bi.getPrice());
+			}
+			itemCounter.incrementCount();
+			items.put(bi.getName(), itemCounter);
+		});
+		return items;
+	}
+	
+	public void printItems(Map<String, ItemCounter> items) {
+		Set<String> set = items.keySet();
+		set.forEach(item -> {
+			ItemCounter itemCounter = items.get(item);
+			logger.info(itemCounter.toString());
+		});
+	}
+
 	public List<CatalogPojo> getBasketItems() {
 		// clone the basket
 		List<CatalogPojo> clonedBasket = new ArrayList<>();

@@ -6,6 +6,7 @@
 body {
   padding-top: 56px;
   background-color: pink;
+  height: 100%;
 }
 
 form {
@@ -45,7 +46,10 @@ form {
 }
 
 .footer {
-	position: absolute;
+	height: 25px;
+	max-height: 25px !important;
+	position: fixed;
+	vertical-align: bottom;
 	bottom: 0;
 	width: 100%;
 }

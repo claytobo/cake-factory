@@ -64,11 +64,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //			.authorizeRequests()
 			.and()
 				.formLogin()
-					.loginPage("/login.html")
-//					.defaultSuccessUrl("/basket")
-//					.failureUrl("/error")
-//					.passwordParameter("password")
-//					.usernameParameter("username")
+					.loginPage("/login")
+					.defaultSuccessUrl("/basket")
+					.failureUrl("/error")
 			.and()
 				.exceptionHandling()
 					.accessDeniedPage("/error")
@@ -76,9 +74,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.logout()
 					.deleteCookies("JSESSIONID")
 					.logoutSuccessUrl("/");
-//			.and()
-//			.csrf()
-//			.disable();
 	}
 
 	@Override

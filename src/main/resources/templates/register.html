@@ -1,70 +1,25 @@
-<!-- 
-<!DOCTYPE HTML>
-<html xmlns:th="https://www.thymeleaf.org">
-<head>
-    <title>Getting Started: Handling Form Submission</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-<body>
-	<h1>Form</h1>
-    <form action="#" th:action="@{/register}" th:object="${signup}" method="post">
-    	<p>Email: <input type="text" th:field="*{email}" /></p>
-        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-    </form>
-</body>
-</html>
- -->
-
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Cake Factory Basket for Customer">
-<meta name="author" content="Clayton Bodine">
-<title>Cake Factory Signup Page</title>
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="css/shop-homepage.css" rel="stylesheet">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Cake Factory Basket for Customer">
+	<meta name="author" content="Clayton Bodine">
+	<title>Cake Factory Signup Page</title>
+	<link href="../../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+	<link href="../../static/css/shop-homepage.css" rel="stylesheet" th:href="@{/css/shop-homepage.css}">
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-		<div class="container">
-			<a class="navbar-brand" href="#">The Cake Factory</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-controls="navbarResponsive"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="/">Home
-							<span class="sr-only">(current)</span>
-						</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">About</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Services</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{'/register'}" th:text="'Signup'">Signup</a>
-					</li>
-				</ul>
-			</div>
-			<div class="basket">
-				<label
-					th:text="'Basket: ' + ( (${BASKET_COUNT} == null) ? '0 items' : ${BASKET_COUNT} + ' item(s)' )"></label>
-			</div>
-		</div>
-	</nav>
+	<!-- Navigation -->
+	<nav th:replace="fragments/header :: header"></nav>
 	<div class="container">
 		<div class="row">
 			<h1 class="attention">Signup with the Cake Factory here!</h1>
 		</div>
 		<div class="row">
-			<form method="POST" action="#" th:action="@{/register}" th:object="${register}">
+			<form method="POST" action="#" th:action="@{/register}"
+				th:object="${register}">
 				<div class="two-column">
 					<h2>Login Information</h2>
 					<table>
@@ -150,8 +105,7 @@
 									<option value="west virginia">West Virginia</option>
 									<option value="wisconsin">Wisconsin</option>
 									<option value="wyoming">Wyoming</option>
-								</select>
-							</td>
+							</select></td>
 						</tr>
 						<tr>
 							<th><label for="zip">Zip Code: </label></th>
@@ -165,12 +119,8 @@
 			</form>
 		</div>
 	</div>
-	<footer class="py-5 bg-dark footer">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; The Cake
-				Factory LTD 2020</p>
-		</div>
-	</footer>
+	<!-- Footer -->
+	<footer th:replace="fragments/footer :: footer"></footer>
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>

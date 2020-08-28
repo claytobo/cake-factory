@@ -32,8 +32,8 @@
 						<tr th:each="item : ${BASKET_ITEMS}">
 							<td class="list-remove-button"><a
 								th:href="@{'/basket/subtract/' + ${item.code}}">REMOVE</a></td>
-							<td th:text="${item.name}"></td>
-							<td th:text="${#numbers.formatCurrency(item.price)}"></td>
+							<td th:text="${item.item}"></td>
+							<td th:text="${item.quantity + ' @ ' + #numbers.formatCurrency(item.pricePerItem) + ' = ' + #numbers.formatCurrency(item.getSubtotal())}"></td>
 						</tr>
 						<tr>
 							<th colspan="2">TOTAL:</th>

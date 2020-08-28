@@ -81,7 +81,7 @@ public class BasketController {
 		logger.info("user called BasketController::showBasket");
 		model.addAttribute("BASKET_COUNT", basketService.countItems());
 		model.addAttribute("BASKET_PRICE", basketService.getTotal());
-		model.addAttribute("BASKET_ITEMS", basketService.getBasketItems());
+		model.addAttribute("BASKET_ITEMS", basketService.mapItems());
 		model.addAttribute("order", order);
 		logger.info("Model Basket Count: " + model.getAttribute("BASKET_COUNT"));
 		logger.info("Model Basket Price: " + model.getAttribute("BASKET_PRICE"));

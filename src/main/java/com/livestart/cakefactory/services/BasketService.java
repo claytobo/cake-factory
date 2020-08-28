@@ -78,7 +78,7 @@ public class BasketService {
 		return basketTotal;
 	}
 	
-	public Map<String, ItemCounter> mapItems() {
+	public List<ItemCounter> mapItems() {
 		Map<String, ItemCounter> items = new HashMap<>();;
 		List<CatalogPojo> basketItems = getBasketItems();
 		basketItems.forEach(bi -> {
@@ -90,7 +90,11 @@ public class BasketService {
 			itemCounter.incrementCount();
 			items.put(bi.getName(), itemCounter);
 		});
-		return items;
+		List<ItemCounter> list = new ArrayList<>();
+		items.values().forEach(item -> {
+			list.add(item);
+		});
+		return list;
 	}
 	
 	public void printItems(Map<String, ItemCounter> items) {

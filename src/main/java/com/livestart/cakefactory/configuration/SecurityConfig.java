@@ -7,7 +7,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -61,6 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/basket/add/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/basket/subtract/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/basket/item/**").permitAll()
+				.antMatchers("/account/").hasRole("CUSTOMER")
 				.antMatchers(PUBLIC_MATCHERS).permitAll()
 				.anyRequest().authenticated()
 //			.and()

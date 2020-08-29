@@ -3,6 +3,7 @@ package com.livestart.cakefactory.controllers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -11,14 +12,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.livestart.cakefactory.repositories.entities.Addresses;
+import com.livestart.cakefactory.repositories.pojos.Address;
 import com.livestart.cakefactory.repositories.pojos.Order;
+import com.livestart.cakefactory.services.AddressService;
 import com.livestart.cakefactory.services.BasketService;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 @Controller
 @RequestMapping("/basket")
 public class BasketController {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private BasketService basketService;
+	
+	@Autowired
+	private AddressService addressService;
 	
 	@Autowired
 	private Order order;
@@ -77,12 +85,13 @@ public class BasketController {
 	}
 
 	@GetMapping
-	public String showBasket(Model model) {
+	public String showBasket(Model model, Authentication auth) {
 		logger.info("user called BasketController::showBasket");
 		model.addAttribute("BASKET_COUNT", basketService.countItems());
 		model.addAttribute("BASKET_PRICE", basketService.getTotal());
 		model.addAttribute("BASKET_ITEMS", basketService.mapItems());
-		model.addAttribute("order", order);
+		Addresses addresses = addressService.getOne(auth.getName());
+		model.addAttribute("order", new Address(addresses));
 		logger.info("Model Basket Count: " + model.getAttribute("BASKET_COUNT"));
 		logger.info("Model Basket Price: " + model.getAttribute("BASKET_PRICE"));
 		return "basket";

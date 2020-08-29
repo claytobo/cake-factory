@@ -45,6 +45,8 @@
 	
 			<div class="two-column">
 				<form method="POST" th:action="@{/order}" th:object="${order}">
+					<table th:replace="fragments/address :: address"></table>
+					<!-- 
 					<table>
 						<tr>
 							<th><label for="firstName">First Name: </label></th>
@@ -123,6 +125,7 @@
 							<td><input type="text" th:field="*{zip}" /></td>
 						</tr>
 					</table>
+					 -->
 					<br /> <input type="submit" value="Submit order" />
 				</form>
 			</div>

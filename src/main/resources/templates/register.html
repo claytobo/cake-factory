@@ -35,6 +35,8 @@
 				</div>
 				<div class="two-column">
 					<h2>Delivery Information</h2>
+					<table th:replace="fragments/address :: address"></table>
+					<!-- 
 					<table>
 						<tr>
 							<th><label for="firstName">First Name: </label></th>
@@ -112,6 +114,7 @@
 							<td><input type="text" th:field="*{zip}" /></td>
 						</tr>
 					</table>
+					 -->
 				</div>
 				<div class="row">
 					<input class="register" type="submit" value="Register" />

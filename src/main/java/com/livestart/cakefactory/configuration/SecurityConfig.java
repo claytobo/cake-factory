@@ -1,7 +1,5 @@
 package com.livestart.cakefactory.configuration;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -15,7 +13,6 @@ import com.livestart.cakefactory.services.SignupService;
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private SignupService service;
 	
 	private static final String[] PUBLIC_MATCHERS = {

@@ -54,10 +54,19 @@ form {
 	width: 100%;
 }
 
+div.container {
+	max-width: 99%;
+}
+
+div.container > form {
+	width: 75px;
+}
+
 div.signedin {
 	color: yellow;
 	text-align: right;
 	width: 400px;
+	margin-right: 10px;
 }
 
 td.list-add-button {

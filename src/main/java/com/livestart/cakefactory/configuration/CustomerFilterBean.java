@@ -18,8 +18,11 @@ public class CustomerFilterBean extends GenericFilterBean {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken) {
+		if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
 			request.setAttribute("email", authentication.getName());
+		}
+		else {
+			request.setAttribute("email", "");
 		}
 		chain.doFilter(request, response);
 	}

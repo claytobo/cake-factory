@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import com.livestart.cakefactory.services.SignupService;
 
@@ -17,44 +17,18 @@ import com.livestart.cakefactory.services.SignupService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private SignupService service;
-	private BCryptPasswordEncoder encoder;
 	
 	private static final String[] PUBLIC_MATCHERS = {
 		"/", "/css/**", "/images/**", "/vendor/**", "/register/**", "/login/**", "/actuator/**"
 	};
 	
-	public SecurityConfig(SignupService injected, BCryptPasswordEncoder encoder) {
+	public SecurityConfig(SignupService injected) {
 		this.service = injected;
-		this.encoder = encoder;
 	}
-	
-	/*
-	 * .csrf().disable()
-          .authorizeRequests()
-          .antMatchers("/admin/**").hasRole("ADMIN")
-          .antMatchers("/anonymous*").anonymous()
-          .antMatchers("/login*").permitAll()
-          .anyRequest().authenticated()
-          .and()
-          .formLogin()
-          .loginPage("/login.html")
-          .loginProcessingUrl("/perform_login")
-          .defaultSuccessUrl("/homepage.html", true)
-          //.failureUrl("/login.html?error=true")
-          .failureHandler(authenticationFailureHandler())
-          .and()
-          .logout()
-          .logoutUrl("/perform_logout")
-          .deleteCookies("JSESSIONID")
-          .logoutSuccessHandler(logoutSuccessHandler());
-
-	 */
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-//			.httpBasic()
-//			.and()
 			.authorizeRequests()
 				.antMatchers(HttpMethod.GET, "/basket/").hasRole("CUSTOMER")
 				.antMatchers(HttpMethod.GET, "/basket/add/**").permitAll()
@@ -63,8 +37,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/account/").hasRole("CUSTOMER")
 				.antMatchers(PUBLIC_MATCHERS).permitAll()
 				.anyRequest().authenticated()
-//			.and()
-//			.authorizeRequests()
 			.and()
 				.formLogin()
 					.loginPage("/login")
@@ -76,7 +48,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 				.logout()
 					.deleteCookies("JSESSIONID")
-					.logoutSuccessUrl("/");
+					.logoutSuccessUrl("/")
+			.and()
+				.addFilterAfter(new CustomerFilterBean(), BasicAuthenticationFilter.class);
 	}
 
 	@Override
@@ -84,8 +58,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return service;
 	}
 
-//	@Override
-//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		auth.userDetailsService(service).passwordEncoder(encoder);
-//	}
 }

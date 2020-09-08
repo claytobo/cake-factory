@@ -30,7 +30,7 @@
   				<input type="submit" value="Logout"/>
 			</form>
 			<div class="basket">
-				<a th:href="@{'/basket'}" th:text="'Basket: ' + ( (${BASKET_COUNT} == null) ? '0 items' : ${BASKET_COUNT} + ' item(s)' )"></a>
+				<a th:href="@{'/basket'}" th:text="'Basket: ' + ( (${FILTER_BASKET_COUNT} == null) ? '0 items' : ${FILTER_BASKET_COUNT} + ' item(s)' )"></a>
 			</div>
 		</div>
 	</nav>

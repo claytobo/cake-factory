@@ -8,19 +8,22 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
+import com.livestart.cakefactory.services.BasketService;
 import com.livestart.cakefactory.services.SignupService;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private SignupService service;
+	private BasketFilter basketFilter;
 	
 	private static final String[] PUBLIC_MATCHERS = {
 		"/", "/css/**", "/images/**", "/vendor/**", "/register/**", "/login/**", "/actuator/**"
 	};
 	
-	public SecurityConfig(SignupService injected) {
+	public SecurityConfig(SignupService injected, BasketFilter filter) {
 		this.service = injected;
+		this.basketFilter = filter;
 	}
 	
 	@Override
@@ -47,7 +50,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.deleteCookies("JSESSIONID")
 					.logoutSuccessUrl("/")
 			.and()
-				.addFilterAfter(new CustomerFilterBean(), BasicAuthenticationFilter.class);
+				.addFilterAfter(new CustomerFilterBean(), BasicAuthenticationFilter.class)
+				.addFilterAfter(basketFilter, CustomerFilterBean.class);
 	}
 
 	@Override
